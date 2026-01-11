@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /*.json$
+
+Sitemap: https://atex.sa/sitemap.xml

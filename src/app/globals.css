@@ -1,0 +1,446 @@
+/**
+ * ATEX Global Styles
+ * CSS Variables mapped from design tokens
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables from Design Tokens */
+:root {
+  /* Primary Colors */
+  --color-primary: 13, 148, 136; /* #0D9488 */
+  --color-primary-hover: 15, 118, 110; /* #0F766E */
+  --color-primary-active: 17, 94, 89; /* #115E59 */
+
+  /* Secondary Colors */
+  --color-secondary: 30, 41, 59; /* #1E293B */
+  --color-secondary-light: 51, 65, 85; /* #334155 */
+  --color-secondary-lighter: 71, 85, 105; /* #475569 */
+
+  /* Accent Colors */
+  --color-accent: 245, 158, 11; /* #F59E0B */
+  --color-accent-hover: 217, 119, 6; /* #D97706 */
+
+  /* Background Colors */
+  --color-background: 255, 255, 255; /* #FFFFFF */
+  --color-background-secondary: 248, 250, 252; /* #F8FAFC */
+  --color-background-tertiary: 241, 245, 249; /* #F1F5F9 */
+
+  /* Surface Colors */
+  --color-surface: 255, 255, 255; /* #FFFFFF */
+  --color-surface-hover: 248, 250, 252; /* #F8FAFC */
+
+  /* Border Colors */
+  --color-border: 226, 232, 240; /* #E2E8F0 */
+  --color-border-secondary: 203, 213, 225; /* #CBD5E1 */
+
+  /* Text Colors */
+  --color-text-primary: 30, 41, 59; /* #1E293B */
+  --color-text-secondary: 71, 85, 105; /* #475569 */
+  --color-text-muted: 148, 163, 184; /* #94A3B8 */
+  --color-text-disabled: 203, 213, 225; /* #CBD5E1 */
+
+  /* Semantic Colors */
+  --color-success: 16, 185, 129; /* #10B981 */
+  --color-error: 239, 68, 68; /* #EF4444 */
+  --color-warning: 245, 158, 11; /* #F59E0B */
+  --color-info: 59, 130, 246; /* #3B82F6 */
+
+  /* Spacing Scale */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-24: 6rem;
+
+  /* Border Radius */
+  --radius-small: 0.25rem;
+  --radius-medium: 0.5rem;
+  --radius-large: 0.75rem;
+  --radius-extra-large: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadow Presets */
+  --shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-extra-large: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.2s;
+  --transition-slow: 0.3s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-notification: 1080;
+}
+
+/* Dark Mode (Not Used - Light Mode Only) */
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-text-secondary antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Arabic text */
+  html[dir='rtl'] body,
+  html[dir='rtl'] [lang='ar'] {
+    font-family: 'IBM Plex Sans Arabic', 'Tajawal', 'Cairo', sans-serif;
+  }
+
+  /* English text */
+  html[dir='ltr'] body,
+  html[dir='ltr'] [lang='en'] {
+    font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-primary font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-h1 leading-tight;
+  }
+
+  h2 {
+    @apply text-h2 leading-tight;
+  }
+
+  h3 {
+    @apply text-h3 leading-tight;
+  }
+
+  h4 {
+    @apply text-h4 leading-tight;
+  }
+
+  h5 {
+    @apply text-h5 leading-tight;
+  }
+
+  h6 {
+    @apply text-h6 leading-tight;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary transition-colors duration-normal;
+  }
+
+  a:hover {
+    @apply text-primary-hover;
+  }
+
+  /* Images */
+  img, picture, video, canvas, svg {
+    @apply max-w-full h-auto;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-primary/20 text-text-primary;
+  }
+
+  /* Focus */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  /* Remove default button styles */
+  button {
+    @apply border-none bg-transparent cursor-pointer;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Container */
+  .container {
+    @apply max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8;
+  }
+
+  /* Section */
+  .section {
+    @apply py-12 md:py-16 lg:py-24;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-surface rounded-large border border-border p-6 shadow-small transition-all duration-normal;
+  }
+
+  .card:hover {
+    @apply shadow-medium -translate-y-0.5;
+  }
+
+  /* Card Secondary - Uses secondary color accent */
+  .card-secondary {
+    @apply bg-surface rounded-large border border-secondary/20 p-6 shadow-sm transition-all duration-normal;
+  }
+
+  .card-secondary:hover {
+    @apply shadow-md -translate-y-0.5 border-secondary/30;
+  }
+
+  /* Card Elevated */
+  .card-elevated {
+    @apply bg-surface rounded-large border-none p-6 shadow-medium transition-all duration-normal;
+  }
+
+  .card-elevated:hover {
+    @apply shadow-large -translate-y-1;
+  }
+
+  /* Button Base */
+  .btn {
+    @apply inline-flex items-center justify-center font-semibold transition-all duration-200 ease-out;
+    @apply relative overflow-hidden;
+    @apply rounded-lg;
+    /* Ensure proper vertical centering */
+    line-height: 1.2;
+    gap: 0.5rem;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply btn bg-primary text-white;
+    @apply shadow-sm hover:shadow-md;
+    @apply hover:-translate-y-0.5 active:translate-y-0;
+    @apply focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply before:absolute before:inset-0 before:bg-white/20 before:opacity-0 before:transition-opacity before:duration-200;
+    @apply hover:before:opacity-100;
+  }
+
+  /* Primary Button Sizes */
+  .btn-primary.h-10 {
+    @apply px-5 text-sm py-2.5;
+  }
+  .btn-primary.h-12 {
+    @apply px-7 text-base py-3;
+  }
+  .btn-primary.h-14 {
+    @apply px-9 text-lg py-3.5;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply btn border-2 border-secondary text-secondary bg-transparent;
+    @apply hover:bg-secondary/5;
+    @apply focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+    @apply hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Secondary Button Sizes */
+  .btn-secondary.h-10 {
+    @apply px-5 text-sm py-2.5;
+  }
+  .btn-secondary.h-12 {
+    @apply px-7 text-base py-3;
+  }
+  .btn-secondary.h-14 {
+    @apply px-9 text-lg py-3.5;
+  }
+
+  /* Text Button */
+  .btn-text {
+    @apply btn text-primary font-medium;
+    @apply hover:text-primary-hover;
+    @apply focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded;
+    @apply relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-200;
+    @apply hover:after:w-full;
+  }
+
+  /* Text Button Sizes */
+  .btn-text.h-10 {
+    @apply px-3 text-sm;
+  }
+  .btn-text.h-12 {
+    @apply px-4 text-base;
+  }
+  .btn-text.h-14 {
+    @apply px-5 text-lg;
+  }
+
+  /* Ghost Button */
+  .btn-ghost {
+    @apply btn text-text-secondary bg-transparent;
+    @apply hover:bg-background-tertiary hover:text-text-primary;
+    @apply focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded;
+  }
+
+  /* Ghost Button Sizes */
+  .btn-ghost.h-10 {
+    @apply px-4 text-sm;
+  }
+  .btn-ghost.h-12 {
+    @apply px-6 text-base;
+  }
+  .btn-ghost.h-14 {
+    @apply px-8 text-lg;
+  }
+
+  /* Icon Button */
+  .btn-icon {
+    @apply btn p-2 rounded-full;
+  }
+
+  /* Button Icon Spacing */
+  .btn .icon-left {
+    @apply me-2;
+  }
+  .btn .icon-right {
+    @apply ms-2;
+  }
+  .btn-text .icon-left {
+    @apply me-1.5;
+  }
+  .btn-text .icon-right {
+    @apply ms-1.5;
+  }
+
+  /* RTL specific icon adjustments */
+  [dir='rtl'] .btn .icon-left {
+    @apply me-2 -ml-0;
+  }
+  [dir='rtl'] .btn .icon-right {
+    @apply ms-2 -mr-0;
+  }
+  [dir='rtl'] .btn-text .icon-left {
+    @apply me-1.5 -ml-0;
+  }
+  [dir='rtl'] .btn-text .icon-right {
+    @apply ms-1.5 -mr-0;
+  }
+
+  /* Input Base */
+  .input {
+    @apply w-full h-12 px-4 border-2 border-border rounded-medium text-text-secondary placeholder-text-muted transition-all duration-normal focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+
+  .input-error {
+    @apply border-error focus:border-error focus:ring-error/20;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary/10 text-primary;
+  }
+
+  .badge-secondary {
+    @apply badge bg-background-tertiary text-text-secondary;
+  }
+
+  /* Divider */
+  .divider {
+    @apply w-full border-t border-border;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin;
+  }
+}
+
+/* Utility Styles */
+@layer utilities {
+  /* Text Balance for better typography */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar but allow scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Horizontal scroll snap */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+  .scroll-snap-item {
+    scroll-snap-align: start;
+  }
+
+  /* RTL utilities */
+  [dir='rtl'] .rtl-flip {
+    transform: scaleX(-1);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-text-muted/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-text-muted/50;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

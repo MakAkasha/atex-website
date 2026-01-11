@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "title": "ATEX - Advanced Technical Experts | Smart Home, Smart Locks, Smart Systems",
+    "description": "ATEX - Advanced Technical Experts in Jeddah, KSA. We specialize in smart homes, smart locks, smart systems, smart hotels, smart parking systems, and modular LED display panels.",
+    "keywords": "smart home, smart locks, smart systems, smart hotel, smart parking, LED displays, Jeddah, Saudi Arabia"
+  },
+  "common": {
+    "home": "Home",
+    "services": "Services",
+    "products": "Products",
+    "projects": "Projects",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "quote": "Request Quote",
+    "whatsapp": "WhatsApp",
+    "call": "Call Us",
+    "email": "Email",
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "open": "Open",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "Transform Your Home into a Smart Home with ATEX",
+    "subtitle": "We offer innovative solutions for smart homes, smart locks, and smart systems in Jeddah and across Saudi Arabia",
+    "ctaPrimary": "Request a Quote",
+    "ctaSecondary": "Contact on WhatsApp"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Integrated technology solutions for your home and business",
+    "smartHome": {
+      "title": "Smart Home",
+      "description": "Complete solutions to transform your home into a fully connected smart home",
+      "slug": "smart-home"
+    },
+    "smartLocks": {
+      "title": "Smart Locks",
+      "description": "Secure and convenient smart lock systems for your home and office",
+      "slug": "smart-locks"
+    },
+    "smartSystems": {
+      "title": "Smart Systems",
+      "description": "Smart building management systems and central control solutions",
+      "slug": "smart-systems"
+    },
+    "smartHotel": {
+      "title": "Smart Hotel",
+      "description": "Smart hotel solutions to enhance guest experience",
+      "slug": "smart-hotel"
+    },
+    "smartParking": {
+      "title": "Smart Parking Systems",
+      "description": "Smart parking management solutions and license plate recognition",
+      "slug": "smart-parking"
+    },
+    "ledPanels": {
+      "title": "LED Display Panels",
+      "description": "Indoor and outdoor modular LED display panels",
+      "slug": "modular-led-panels"
+    },
+    "viewAll": "View All Services"
+  },
+  "products": {
+    "title": "Products",
+    "subtitle": "High-quality technology products",
+    "categories": "Categories",
+    "viewDetails": "View Details",
+    "requestQuote": "Request Quote"
+  },
+  "projects": {
+    "title": "Our Projects",
+    "subtitle": "We take pride in delivering the best technology solutions",
+    "viewProject": "View Project",
+    "viewAll": "View All Projects",
+    "client": "Client",
+    "location": "Location",
+    "date": "Date"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Latest news and technical insights",
+    "readMore": "Read More",
+    "author": "Author",
+    "date": "Date",
+    "category": "Category",
+    "readingTime": "Reading Time",
+    "viewAll": "View All Articles"
+  },
+  "whyUs": {
+    "title": "Why Choose ATEX?",
+    "subtitle": "We deliver the best technology solutions in the Kingdom",
+    "points": [
+      {
+        "title": "Extensive Experience",
+        "description": "Years of experience in smart technology"
+      },
+      {
+        "title": "Professional Team",
+        "description": "Team of specialized engineers and technicians"
+      },
+      {
+        "title": "High-Quality Products",
+        "description": "We use only the best international products"
+      },
+      {
+        "title": "Continuous Support",
+        "description": "24/7 technical support service"
+      },
+      {
+        "title": "Warranty Coverage",
+        "description": "Comprehensive warranty on all products and services"
+      },
+      {
+        "title": "Competitive Pricing",
+        "description": "Competitive prices with the best quality"
+      }
+    ]
+  },
+  "process": {
+    "title": "Our Process",
+    "subtitle": "From consultation to implementation",
+    "steps": [
+      {
+        "title": "Consultation",
+        "description": "We understand your needs and requirements"
+      },
+      {
+        "title": "Design",
+        "description": "We design the perfect solution for you"
+      },
+      {
+        "title": "Implementation",
+        "description": "We implement the project with the highest quality standards"
+      },
+      {
+        "title": "Handover",
+        "description": "We deliver the project and provide training and support"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Client testimonials and reviews"
+  },
+  "footer": {
+    "tagline": "Advanced Technical Experts",
+    "description": "ATEX is your trusted partner for smart home and smart systems solutions in Saudi Arabia",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "products": "Products",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "imageCredits": "Image Credits",
+    "allRightsReserved": "All rights reserved"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help you",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "success": "Your message has been sent successfully! We'll contact you soon.",
+      "error": "An error occurred while sending the message. Please try again."
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "workingHours": "Working Hours"
+    },
+    "workingHours": "Sunday - Thursday: 9:00 AM - 6:00 PM"
+  },
+  "quote": {
+    "title": "Request a Quote",
+    "subtitle": "Get a customized quote for your project",
+    "form": {
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "service": "Required Service",
+      "projectDetails": "Project Details",
+      "budget": "Expected Budget",
+      "timeline": "Expected Timeline",
+      "submit": "Submit Request",
+      "success": "Your request has been submitted successfully! We'll contact you soon."
+    },
+    "whatHappens": "What Happens Next?",
+    "steps": [
+      "We receive and review your request",
+      "We contact you to discuss details",
+      "We provide you with a detailed quote",
+      "We start implementing the project after approval"
+    ]
+  },
+  "service": {
+    "whatIs": "What Is",
+    "benefits": "Benefits",
+    "whatsIncluded": "What's Included",
+    "useCases": "Use Cases",
+    "scenarios": "Scenarios",
+    "examples": "Examples",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "relatedProjects": "Related Projects",
+    "requestQuote": "Request a Quote for This Service"
+  },
+  "seo": {
+    "breadcrumbs": "Breadcrumbs",
+    "relatedPages": "Related Pages",
+    "alsoRead": "Also Read"
+  },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "description": "Sorry, the page you are looking for does not exist.",
+      "goHome": "Go to Home"
+    },
+    "500": {
+      "title": "Server Error",
+      "description": "Sorry, an unexpected error occurred. Please try again.",
+      "goHome": "Go to Home"
+    }
+  }
+}
