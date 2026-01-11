@@ -31,7 +31,7 @@ echo ""
 # Deploy to VPS
 echo "Cloning to VPS and deploying..."
 ssh root@147.93.63.226 << 'EOF'
-cd /root
+cd /var/www/html
 if [ -d "atex-app" ]; then
     echo "Pulling latest changes..."
     cd atex-app
