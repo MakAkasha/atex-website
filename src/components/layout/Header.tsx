@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -15,29 +15,57 @@ export function Header() {
   const t = useTranslations()
   const locale = useLocale() as 'ar' | 'en'
   const pathname = usePathname()
+  
+  // Force re-render when locale changes
+  const [localeKey, setLocaleKey] = useState(locale)
+
+  useEffect(() => {
+    setLocaleKey(locale)
+  }, [locale])
+
   const nav = getNav(locale)
   const contact = getContactInfoForLocale(locale)
   const company = companyInfo
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   const getOtherLocale = () => (locale === 'ar' ? 'en' : 'ar')
 
+  // Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Check if we're on home page
+  const isHomePage = pathname === `/${locale}` || pathname === '/' || pathname === `/${localeKey}`
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300',
+        isHomePage && !isScrolled
+          ? 'bg-transparent border-transparent'
+          : 'border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
+      )}
+    >
       <div className="container">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-3">
             <Image
-              src="/ATEX-logo.svg"
+              src={isHomePage && !isScrolled ? '/ATEX-logo_white.svg' : '/ATEX-logo.svg'}
               alt={locale === 'ar' ? company.nameAr : company.name}
               width={120}
               height={40}
               priority
-              className="h-10 w-auto"
+              className="h-10 w-auto transition-opacity duration-300"
             />
           </Link>
 
@@ -49,8 +77,10 @@ export function Header() {
                 href={`/${locale}${item.href}`}
                 className={cn(
                   'text-sm font-medium transition-colors hover:text-primary',
-                  pathname === `/${locale}${item.href}` ||
-                    (item.href !== '/' && pathname.startsWith(`/${locale}${item.href}`))
+                  isHomePage && !isScrolled
+                    ? 'text-white/90 hover:text-white'
+                    : pathname === `/${locale}${item.href}` ||
+                      (item.href !== '/' && pathname.startsWith(`/${locale}${item.href}`))
                     ? 'text-primary'
                     : 'text-text-secondary'
                 )}
@@ -65,7 +95,10 @@ export function Header() {
             {/* Language Switcher */}
             <Link
               href={pathname.replace(`/${locale}`, `/${getOtherLocale()}`)}
-              className="hidden h-10 items-center rounded-md px-3 text-sm font-medium text-text-secondary transition-colors hover:bg-background-tertiary hover:text-text-primary md:flex"
+              className={cn(
+                'hidden h-10 items-center rounded-md px-3 text-sm font-medium transition-colors hover:bg-white/10 md:flex',
+                isHomePage && !isScrolled ? 'text-white' : 'text-text-secondary hover:bg-background-tertiary hover:text-text-primary'
+              )}
             >
               {getOtherLocale().toUpperCase()}
             </Link>
@@ -75,16 +108,24 @@ export function Header() {
               href={createWhatsAppLink(contact.whatsapp)}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden btn-primary btn h-10 md:inline-flex"
+              className={cn(
+                'hidden btn h-10 md:inline-flex px-5',
+                isHomePage && !isScrolled ? 'bg-white text-primary hover:bg-white/90' : 'btn-primary',
+                locale === 'ar' ? 'flex-row-reverse' : ''
+              )}
+              dir={locale === 'ar' ? 'rtl' : 'ltr'}
             >
-              <Phone className="h-4 w-4" />
-              <span className="ms-2">{t('common.whatsapp')}</span>
+              <Phone className="h-4 w-4 shrink-0" />
+              <span className="whitespace-nowrap">{t('common.whatsapp')}</span>
             </a>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="rounded-md p-2 text-text-secondary hover:bg-background-tertiary lg:hidden"
+              className={cn(
+                'rounded-md p-2 transition-colors lg:hidden',
+                isHomePage && !isScrolled ? 'text-white hover:bg-white/10' : 'text-text-secondary hover:bg-background-tertiary'
+              )}
               aria-label={t('common.menu')}
             >
               {isMenuOpen ? (
@@ -136,22 +177,30 @@ export function Header() {
               </div>
 
               {/* Mobile Contact */}
-              <div className="mt-4 pt-4 border-t border-border">
+              <div className="mt-4 pt-4 border-t border-border space-y-3">
                 <a
                   href={createWhatsAppLink(contact.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary btn w-full"
+                  className={cn(
+                    'btn-primary btn w-full flex items-center justify-center gap-2',
+                    locale === 'ar' ? 'flex-row-reverse' : ''
+                  )}
+                  dir={locale === 'ar' ? 'rtl' : 'ltr'}
                 >
-                  <Phone className="h-4 w-4" />
-                  <span className="ms-2">{t('common.whatsapp')}</span>
+                  <Phone className="h-4 w-4 shrink-0" />
+                  <span>{t('common.whatsapp')}</span>
                 </a>
                 <a
                   href={`mailto:${contact.email.general}`}
-                  className="btn-secondary btn mt-3 w-full"
+                  className={cn(
+                    'btn-secondary btn w-full flex items-center justify-center gap-2',
+                    locale === 'ar' ? 'flex-row-reverse' : ''
+                  )}
+                  dir={locale === 'ar' ? 'rtl' : 'ltr'}
                 >
-                  <Mail className="h-4 w-4" />
-                  <span className="ms-2">{t('common.email')}</span>
+                  <Mail className="h-4 w-4 shrink-0" />
+                  <span>{t('common.email')}</span>
                 </a>
               </div>
             </nav>

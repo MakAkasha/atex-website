@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, Github } f
 import { getNav } from '@/content/nav'
 import { companyInfo, socialLinks, getContactInfoForLocale } from '@/content/site'
 import { createEmailLink, formatPhoneNumber } from '@/lib/utils'
+import { getServices } from '@/content/services'
 
 export function Footer() {
   const t = useTranslations()
@@ -12,6 +13,7 @@ export function Footer() {
   const nav = getNav(locale)
   const contact = getContactInfoForLocale(locale)
   const company = companyInfo
+  const services = getServices(locale)
 
   const socialIcons: Record<string, React.ComponentType<{ className?: string }>> = {
     twitter: Twitter,
@@ -69,46 +71,16 @@ export function Footer() {
           <div>
             <h3 className="mb-4 font-semibold text-text-primary">{t('footer.services')}</h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href={`/${locale}/services/smart-home`}
-                  className="text-sm text-text-secondary transition-colors hover:text-primary"
-                >
-                  {t('services.smartHome.title')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/services/smart-locks`}
-                  className="text-sm text-text-secondary transition-colors hover:text-primary"
-                >
-                  {t('services.smartLocks.title')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/services/smart-systems`}
-                  className="text-sm text-text-secondary transition-colors hover:text-primary"
-                >
-                  {t('services.smartSystems.title')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/services/smart-parking`}
-                  className="text-sm text-text-secondary transition-colors hover:text-primary"
-                >
-                  {t('services.smartParking.title')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/services/modular-led-panels`}
-                  className="text-sm text-text-secondary transition-colors hover:text-primary"
-                >
-                  {t('services.ledPanels.title')}
-                </Link>
-              </li>
+              {services.slice(0, 5).map((service) => (
+                <li key={service.id}>
+                  <Link
+                    href={`/${locale}/services/${service.slug}`}
+                    className="text-sm text-text-secondary transition-colors hover:text-primary"
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -10,6 +10,8 @@ export interface ContactInfo {
   email: {
     general: string
     sales: string
+    projects: string
+    support: string
   }
   workingHours: {
     ar: string
@@ -38,14 +40,16 @@ export interface CompanyInfo {
 
 export const contactInfo: ContactInfo = {
   address: {
-    ar: 'حي الشرفية – طريق الملك فهد، جدة',
-    en: 'Al Sharafiyah District - King Fahd Road, Jeddah',
+    ar: 'جدة – حي الشرفية – طريق الملك فهد',
+    en: 'Jeddah - Al Sharafiyah District - King Fahd Road',
   },
   phone: '0521345567',
   whatsapp: '0521345567',
   email: {
     general: 'info@atex.sa',
     sales: 'sales@atex.sa',
+    projects: 'projects@atex.sa',
+    support: 'support@atex.sa',
   },
   workingHours: {
     ar: 'الأحد - الخميس: 9:00 ص - 6:00 م',

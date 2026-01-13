@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { useLocale } from 'next-intl'
-import { Mail, Phone, MapPin, Clock, MessageCircle, Send, Check } from 'lucide-react'
+import { useTranslations, useLocale } from 'next-intl'
+import { Mail, Phone, MapPin, Clock, MessageCircle, Send, Check, Building, ShoppingCart, Wrench } from 'lucide-react'
 import { getContactInfoForLocale } from '@/content/site'
 import { formatPhoneNumber, createWhatsAppLink, createEmailLink } from '@/lib/utils'
 
 export default function ContactPage() {
+  const t = useTranslations()
   const locale = useLocale().replace('/', '') as 'ar' | 'en' || 'ar'
   const contact = getContactInfoForLocale(locale)
 
@@ -34,6 +35,32 @@ export default function ContactPage() {
     setIsSubmitted(true)
   }
 
+  const contactDepartments = [
+    {
+      icon: Building,
+      title: t('contact.general'),
+      email: contact.email.general,
+      phone: contact.phone,
+    },
+    {
+      icon: ShoppingCart,
+      title: t('contact.sales'),
+      email: contact.email.sales,
+      phone: contact.phone,
+    },
+    {
+      icon: Building,
+      title: t('contact.projects'),
+      email: contact.email.projects,
+      phone: contact.phone,
+    },
+    {
+      icon: Wrench,
+      title: t('contact.support'),
+      email: contact.email.support,
+      phone: contact.phone,
+    },
+  ]
 
   return (
     <>
@@ -42,12 +69,10 @@ export default function ContactPage() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <h1 className="text-h1 mb-6 text-text-primary">
-              {locale === 'ar' ? 'اتصل بنا' : 'Contact Us'}
+              {t('contact.title')}
             </h1>
             <p className="text-lg text-text-secondary">
-              {locale === 'ar'
-                ? 'نسعد بالإجابة على استفساراتك. تواصل معنا عبر أي من القنوات التالية.'
-                : 'We are happy to answer your questions. Contact us through any of the channels below.'}
+              {t('contact.subtitle')}
             </p>
           </div>
         </div>
@@ -56,25 +81,25 @@ export default function ContactPage() {
       {/* Contact Information */}
       <section className="section bg-background">
         <div className="container">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {/* Address */}
-            <div className="card">
+            <div className="card p-6">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <MapPin className="h-6 w-6" />
               </div>
               <h3 className="mb-2 font-semibold text-text-primary">
-                {locale === 'ar' ? 'العنوان' : 'Address'}
+                {t('contact.info.address')}
               </h3>
               <p className="text-body-small text-text-muted">{contact.address}</p>
             </div>
 
             {/* Phone */}
-            <div className="card">
+            <div className="card p-6">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <Phone className="h-6 w-6" />
               </div>
               <h3 className="mb-2 font-semibold text-text-primary">
-                {locale === 'ar' ? 'الهاتف' : 'Phone'}
+                {t('contact.info.phone')}
               </h3>
               <a
                 href={`tel:${contact.phone}`}
@@ -85,12 +110,12 @@ export default function ContactPage() {
             </div>
 
             {/* Email */}
-            <div className="card">
+            <div className="card p-6">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <Mail className="h-6 w-6" />
               </div>
               <h3 className="mb-2 font-semibold text-text-primary">
-                {locale === 'ar' ? 'البريد الإلكتروني' : 'Email'}
+                {t('contact.info.email')}
               </h3>
               <a
                 href={createEmailLink(contact.email.general)}
@@ -101,12 +126,12 @@ export default function ContactPage() {
             </div>
 
             {/* Working Hours */}
-            <div className="card">
+            <div className="card p-6">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <Clock className="h-6 w-6" />
               </div>
               <h3 className="mb-2 font-semibold text-text-primary">
-                {locale === 'ar' ? 'ساعات العمل' : 'Working Hours'}
+                {t('contact.info.workingHours')}
               </h3>
               <p className="text-body-small text-text-muted">{contact.workingHours}</p>
             </div>
@@ -114,13 +139,52 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form */}
+      {/* Contact Departments */}
       <section className="section bg-background-secondary">
+        <div className="container">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-h2 mb-8 text-center text-text-primary">
+              {locale === 'ar' ? 'أقسام التواصل' : 'Contact Departments'}
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              {contactDepartments.map((dept, index) => (
+                <div key={index} className="card p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <dept.icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-h5 text-text-primary">{dept.title}</h3>
+                  </div>
+                  <div className="space-y-2">
+                    <a
+                      href={createEmailLink(dept.email)}
+                      className="flex items-center gap-2 text-body-small text-text-muted hover:text-primary transition-colors"
+                    >
+                      <Mail className="h-4 w-4" />
+                      {dept.email}
+                    </a>
+                    <a
+                      href={`tel:${dept.phone}`}
+                      className="flex items-center gap-2 text-body-small text-text-muted hover:text-primary transition-colors"
+                    >
+                      <Phone className="h-4 w-4" />
+                      {formatPhoneNumber(dept.phone)}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section className="section bg-background">
         <div className="container">
           <div className="mx-auto max-w-2xl">
             <div className="mb-8 text-center">
               <h2 className="text-h2 mb-4 text-text-primary">
-                {locale === 'ar' ? 'أرسل رسالة' : 'Send a Message'}
+                {locale === 'ar' ? 'أرسل رسالة خاصة' : 'Send a Private Message'}
               </h2>
               <p className="text-body text-text-secondary">
                 {locale === 'ar'
@@ -146,7 +210,7 @@ export default function ContactPage() {
                   <div className="grid gap-6 md:grid-cols-2">
                     <div>
                       <label htmlFor="name" className="mb-2 block text-body-small font-medium text-text-primary">
-                        {locale === 'ar' ? 'الاسم' : 'Name'} *
+                        {t('contact.form.name')} *
                       </label>
                       <input
                         type="text"
@@ -159,7 +223,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <label htmlFor="email" className="mb-2 block text-body-small font-medium text-text-primary">
-                        {locale === 'ar' ? 'البريد الإلكتروني' : 'Email'} *
+                        {t('contact.form.email')} *
                       </label>
                       <input
                         type="email"
@@ -175,7 +239,7 @@ export default function ContactPage() {
                   <div className="grid gap-6 md:grid-cols-2">
                     <div>
                       <label htmlFor="phone" className="mb-2 block text-body-small font-medium text-text-primary">
-                        {locale === 'ar' ? 'رقم الهاتف' : 'Phone Number'}
+                        {t('contact.form.phone')}
                       </label>
                       <input
                         type="tel"
@@ -187,7 +251,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <label htmlFor="subject" className="mb-2 block text-body-small font-medium text-text-primary">
-                        {locale === 'ar' ? 'الموضوع' : 'Subject'} *
+                        {t('contact.form.subject')} *
                       </label>
                       <input
                         type="text"
@@ -202,7 +266,7 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="message" className="mb-2 block text-body-small font-medium text-text-primary">
-                      {locale === 'ar' ? 'الرسالة' : 'Message'} *
+                      {t('contact.form.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -221,13 +285,13 @@ export default function ContactPage() {
                   >
                     {isSubmitting ? (
                       <>
-                        <Send className={`mr-2 h-5 w-5 animate-spin`} />
+                        <Send className={`${locale === 'ar' ? 'ml-2' : 'mr-2'} h-5 w-5 animate-spin`} />
                         {locale === 'ar' ? 'جاري الإرسال...' : 'Sending...'}
                       </>
                     ) : (
                       <>
-                        <Send className="mr-2 h-5 w-5" />
-                        {locale === 'ar' ? 'إرسال الرسالة' : 'Send Message'}
+                        <Send className={`${locale === 'ar' ? 'ml-2' : 'mr-2'} h-5 w-5`} />
+                        {t('contact.form.submit')}
                       </>
                     )}
                   </button>
@@ -241,13 +305,8 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <h3 className="text-h2 mb-4 text-text-primary">
-                  {locale === 'ar' ? 'تم الإرسال بنجاح!' : 'Message Sent!'}
+                  {t('contact.form.success')}
                 </h3>
-                <p className="text-body text-text-secondary mb-6">
-                  {locale === 'ar'
-                    ? 'شكراً لتواصلك معنا. سنقوم بالرد عليك في أقرب وقت.'
-                    : 'Thank you for contacting us. We will get back to you as soon as possible.'}
-                </p>
                 <button
                   onClick={() => {
                     setFormData({ name: '', email: '', phone: '', subject: '', message: '', honeypot: '' })
@@ -264,32 +323,28 @@ export default function ContactPage() {
       </section>
 
       {/* Quick Links */}
-      <section className="section bg-background">
+      <section className="section bg-background-secondary">
         <div className="container">
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-h2 mb-8 text-text-primary">
-              {locale === 'ar' ? 'روابط سريعة' : 'Quick Links'}
+              {locale === 'ar' ? 'تواصل معنا مباشرة' : 'Contact Us Directly'}
             </h2>
             <div className="grid gap-4 md:grid-cols-2">
               <a
                 href={createWhatsAppLink(contact.whatsapp)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card flex items-center justify-center gap-4 hover:border-primary transition-colors"
+                className="card flex items-center justify-center gap-4 p-6 hover:border-primary transition-colors"
               >
-                <MessageCircle className="h-6 w-6 text-green-600" />
-                <span className="font-medium text-text-primary">
-                  {locale === 'ar' ? 'دردشة واتساب' : 'WhatsApp Chat'}
-                </span>
+                <MessageCircle className="h-8 w-8 text-green-600" />
+                <span className="font-medium text-text-primary">{t('common.whatsapp')}</span>
               </a>
               <a
                 href={`/${locale}/quote`}
-                className="card flex items-center justify-center gap-4 hover:border-primary transition-colors"
+                className="card flex items-center justify-center gap-4 p-6 hover:border-primary transition-colors"
               >
-                <Send className="h-6 w-6 text-primary" />
-                <span className="font-medium text-text-primary">
-                  {locale === 'ar' ? 'طلب عرض سعر' : 'Request a Quote'}
-                </span>
+                <Send className="h-8 w-8 text-primary" />
+                <span className="font-medium text-text-primary">{t('common.quote')}</span>
               </a>
             </div>
           </div>

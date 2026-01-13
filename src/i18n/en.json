@@ -1,15 +1,14 @@
 {
   "meta": {
-    "title": "ATEX - Advanced Technical Experts | Smart Home, Smart Locks, Smart Systems",
-    "description": "ATEX - Advanced Technical Experts in Jeddah, KSA. We specialize in smart homes, smart locks, smart systems, smart hotels, smart parking systems, and modular LED display panels.",
-    "keywords": "smart home, smart locks, smart systems, smart hotel, smart parking, LED displays, Jeddah, Saudi Arabia"
+    "title": "ATEX - Advanced Technical Experts | Smart Digital Transformation",
+    "description": "ATEX - Advanced Technical Experts in Jeddah, Saudi Arabia. Specialized technical solutions from design to implementation and after-sales service.",
+    "keywords": "smart systems, digital transformation, ICT systems, renewable energy, Jeddah, Saudi Arabia"
   },
   "common": {
     "home": "Home",
-    "services": "Services",
-    "products": "Products",
+    "services": "Technical Solutions",
+    "products": "Specialized Systems",
     "projects": "Projects",
-    "blog": "Blog",
     "about": "About",
     "contact": "Contact",
     "quote": "Request Quote",
@@ -37,52 +36,71 @@
     "language": "Language"
   },
   "hero": {
-    "title": "Transform Your Home into a Smart Home with ATEX",
-    "subtitle": "We offer innovative solutions for smart homes, smart locks, and smart systems in Jeddah and across Saudi Arabia",
+    "title": "Transform Your Project with Smart Technology",
+    "subtitle": "Specialized technical solutions from design to implementation and after-sales service",
     "ctaPrimary": "Request a Quote",
     "ctaSecondary": "Contact on WhatsApp"
   },
+  "topBar": {
+    "phone": "0521345567",
+    "email": "info@atex.sa"
+  },
   "services": {
-    "title": "Our Services",
-    "subtitle": "Integrated technology solutions for your home and business",
-    "smartHome": {
-      "title": "Smart Home",
-      "description": "Complete solutions to transform your home into a fully connected smart home",
-      "slug": "smart-home"
+    "title": "Technical Solutions",
+    "subtitle": "Specialized technical solutions from design to implementation and after-sales service",
+    "ict": {
+      "title": "ICT Systems",
+      "description": "Integrated infrastructure for telecommunications and networks",
+      "slug": "ict-systems"
     },
-    "smartLocks": {
-      "title": "Smart Locks",
-      "description": "Secure and convenient smart lock systems for your home and office",
-      "slug": "smart-locks"
+    "ibs": {
+      "title": "IBS Systems",
+      "description": "Integrated communication systems for smart buildings",
+      "slug": "ibs-systems"
     },
-    "smartSystems": {
-      "title": "Smart Systems",
-      "description": "Smart building management systems and central control solutions",
-      "slug": "smart-systems"
+    "electrical": {
+      "title": "Electrical Systems",
+      "description": "Smart and safe electrical solutions for buildings",
+      "slug": "electrical-systems"
     },
-    "smartHotel": {
-      "title": "Smart Hotel",
-      "description": "Smart hotel solutions to enhance guest experience",
-      "slug": "smart-hotel"
+    "renewable": {
+      "title": "Renewable Energy Systems",
+      "description": "Solar and renewable energy solutions",
+      "slug": "renewable-energy"
     },
-    "smartParking": {
-      "title": "Smart Parking Systems",
-      "description": "Smart parking management solutions and license plate recognition",
-      "slug": "smart-parking"
+    "digitalSignage": {
+      "title": "Digital Signage Systems",
+      "description": "LED screens and digital display panels",
+      "slug": "digital-signage"
     },
-    "ledPanels": {
-      "title": "LED Display Panels",
-      "description": "Indoor and outdoor modular LED display panels",
-      "slug": "modular-led-panels"
+    "lowCurrent": {
+      "title": "Low Current Systems",
+      "description": "Security, surveillance, and fire detection systems",
+      "slug": "low-current"
     },
-    "viewAll": "View All Services"
+    "software": {
+      "title": "Custom Software Solutions",
+      "description": "Customized software solutions for building management",
+      "slug": "software-solutions"
+    },
+    "viewAll": "View All Solutions"
   },
   "products": {
-    "title": "Products",
-    "subtitle": "High-quality technology products",
+    "title": "Specialized Systems",
+    "subtitle": "Specialized technical systems for various sectors",
     "categories": "Categories",
     "viewDetails": "View Details",
     "requestQuote": "Request Quote"
+  },
+  "sectors": {
+    "title": "Sectors We Serve",
+    "subtitle": "Customized technical solutions for each sector",
+    "residential": "Residential Buildings",
+    "compounds": "Residential Compounds",
+    "commercial": "Commercial Buildings",
+    "retail": "Retail Markets",
+    "healthcare": "Clinics and Hospitals",
+    "maintenance": "Specialized Maintenance"
   },
   "projects": {
     "title": "Our Projects",
@@ -93,65 +111,91 @@
     "location": "Location",
     "date": "Date"
   },
-  "blog": {
-    "title": "Blog",
-    "subtitle": "Latest news and technical insights",
-    "readMore": "Read More",
-    "author": "Author",
-    "date": "Date",
-    "category": "Category",
-    "readingTime": "Reading Time",
-    "viewAll": "View All Articles"
+  "about": {
+    "title": "About Us",
+    "subtitle": "Your Gateway to Smart Digital Transformation",
+    "intro": "ATEX was established with a vision to provide integrated technical solutions that help organizations and individuals achieve digital transformation. We believe that technology should be an effective tool to facilitate daily life and enhance operational efficiency.",
+    "vision": {
+      "title": "Our Vision",
+      "content": "We aspire to be the leading technical partner in the region, providing innovative solutions that make a real difference in our clients' lives."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "We are committed to delivering high-quality technical solutions that combine innovation and reliability, focusing on our clients' needs and providing ongoing technical support."
+    },
+    "values": {
+      "title": "Our Core Values",
+      "items": [
+        {
+          "title": "Excellence",
+          "description": "We always strive to deliver our best in every project"
+        },
+        {
+          "title": "Customer First",
+          "description": "We place our clients' needs at the heart of every decision"
+        },
+        {
+          "title": "Integrity",
+          "description": "We adhere to the highest standards of transparency and professional honesty"
+        },
+        {
+          "title": "Innovation",
+          "description": "We adopt the latest technologies to provide advanced solutions"
+        }
+      ]
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "clients": "Clients",
+      "years": "Years of Experience",
+      "team": "Specialized Team"
+    }
   },
   "whyUs": {
     "title": "Why Choose ATEX?",
-    "subtitle": "We deliver the best technology solutions in the Kingdom",
+    "subtitle": "Your Trusted Partner for Digital Transformation",
     "points": [
       {
-        "title": "Extensive Experience",
-        "description": "Years of experience in smart technology"
+        "title": "Continuous Innovation and Development",
+        "description": "We keep pace with the latest global technologies and develop innovative solutions"
       },
       {
-        "title": "Professional Team",
-        "description": "Team of specialized engineers and technicians"
+        "title": "Service Quality",
+        "description": "We adhere to the highest quality standards in design and implementation"
       },
       {
-        "title": "High-Quality Products",
-        "description": "We use only the best international products"
+        "title": "Trust and Reliability",
+        "description": "We build long-term relationships with our clients based on trust"
       },
       {
-        "title": "Continuous Support",
-        "description": "24/7 technical support service"
+        "title": "Customized Technical Solutions",
+        "description": "We design solutions that suit each client's individual needs"
       },
       {
-        "title": "Warranty Coverage",
-        "description": "Comprehensive warranty on all products and services"
-      },
-      {
-        "title": "Competitive Pricing",
-        "description": "Competitive prices with the best quality"
+        "title": "Strategic Partnerships",
+        "description": "We work with the best suppliers and global companies"
       }
     ]
   },
   "process": {
     "title": "Our Process",
-    "subtitle": "From consultation to implementation",
+    "subtitle": "From Consultation to Handover",
     "steps": [
       {
-        "title": "Consultation",
-        "description": "We understand your needs and requirements"
+        "title": "Technical Consultations",
+        "description": "We analyze your needs and provide appropriate recommendations"
       },
       {
-        "title": "Design",
-        "description": "We design the perfect solution for you"
+        "title": "Design and Engineering",
+        "description": "We design the perfect solution for your project"
       },
       {
-        "title": "Implementation",
+        "title": "Implementation and Installation",
         "description": "We implement the project with the highest quality standards"
       },
       {
-        "title": "Handover",
-        "description": "We deliver the project and provide training and support"
+        "title": "Support and Maintenance",
+        "description": "We provide ongoing technical support after handover"
       }
     ]
   },
@@ -159,14 +203,17 @@
     "title": "What Our Clients Say",
     "subtitle": "Client testimonials and reviews"
   },
+  "clients": {
+    "title": "Our Clients",
+    "subtitle": "We take pride in the trust of major institutions and companies"
+  },
   "footer": {
     "tagline": "Advanced Technical Experts",
-    "description": "ATEX is your trusted partner for smart home and smart systems solutions in Saudi Arabia",
+    "description": "ATEX is your trusted partner for smart technical solutions in Saudi Arabia",
     "quickLinks": "Quick Links",
-    "services": "Services",
-    "products": "Products",
+    "services": "Technical Solutions",
+    "products": "Specialized Systems",
     "projects": "Projects",
-    "blog": "Blog",
     "contact": "Contact",
     "followUs": "Follow Us",
     "imageCredits": "Image Credits",
@@ -175,6 +222,10 @@
   "contact": {
     "title": "Contact Us",
     "subtitle": "We're here to help you",
+    "general": "General Inquiries",
+    "sales": "Sales Department",
+    "projects": "Project Management",
+    "support": "Technical Support and Maintenance",
     "form": {
       "name": "Name",
       "email": "Email",
@@ -200,7 +251,8 @@
       "fullName": "Full Name",
       "email": "Email",
       "phone": "Phone",
-      "service": "Required Service",
+      "service": "Service Type",
+      "projectType": "Project Type",
       "projectDetails": "Project Details",
       "budget": "Expected Budget",
       "timeline": "Expected Timeline",

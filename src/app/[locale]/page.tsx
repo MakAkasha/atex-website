@@ -1,115 +1,91 @@
 import { useTranslations, useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Check, Play, Star, Zap, Shield, Users, Award, TrendingUp, Clock, Target } from 'lucide-react'
+import { ArrowRight, Check, Play, Star, Zap, Shield, Users, Award } from 'lucide-react'
 import { getServices } from '@/content/services'
 import { getFeaturedProjects } from '@/content/projects'
-import { getFeaturedBlogPosts } from '@/content/blog'
 import { getContactInfoForLocale } from '@/content/site'
-import { createWhatsAppLink } from '@/lib/utils'
+import { createWhatsAppLink, createEmailLink } from '@/lib/utils'
 
 export default function HomePage() {
   const t = useTranslations()
   const locale = useLocale().replace('/', '') as 'ar' | 'en' || 'ar'
   const services = getServices(locale)
   const projects = getFeaturedProjects(locale)
-  const blogPosts = getFeaturedBlogPosts(locale)
   const contact = getContactInfoForLocale(locale)
 
-  const whyUsPoints = [
-    {
-      icon: Award,
-      title: t('whyUs.points.0.title'),
-      description: t('whyUs.points.0.description'),
-    },
-    {
-      icon: Users,
-      title: t('whyUs.points.1.title'),
-      description: t('whyUs.points.1.description'),
-    },
-    {
-      icon: Shield,
-      title: t('whyUs.points.2.title'),
-      description: t('whyUs.points.2.description'),
-    },
-    {
-      icon: Zap,
-      title: t('whyUs.points.3.title'),
-      description: t('whyUs.points.3.description'),
-    },
-    {
-      icon: Check,
-      title: t('whyUs.points.4.title'),
-      description: t('whyUs.points.4.description'),
-    },
-    {
-      icon: Star,
-      title: t('whyUs.points.5.title'),
-      description: t('whyUs.points.5.description'),
-    },
-  ]
+  const whyUsPoints: { icon: React.ElementType; title: string; description: string }[] = t.raw('whyUs.points').map((point: { title: string; description: string }, index: number) => ({
+    icon: [Award, Users, Shield, Zap, Check, Star][index] as React.ElementType,
+    title: point.title,
+    description: point.description,
+  }))
 
-  const processSteps = [
-    {
-      step: '1',
-      title: t('process.steps.0.title'),
-      description: t('process.steps.0.description'),
-    },
-    {
-      step: '2',
-      title: t('process.steps.1.title'),
-      description: t('process.steps.1.description'),
-    },
-    {
-      step: '3',
-      title: t('process.steps.2.title'),
-      description: t('process.steps.2.description'),
-    },
-    {
-      step: '4',
-      title: t('process.steps.3.title'),
-      description: t('process.steps.3.description'),
-    },
-  ]
+  const processSteps: { step: string; title: string; description: string }[] = t.raw('process.steps').map((step: { title: string; description: string }, index: number) => ({
+    step: String(index + 1),
+    title: step.title,
+    description: step.description,
+  }))
 
   const testimonials = [
     {
-      name: 'أحمد السعيد',
-      role: 'مالك فيلا',
+      name: locale === 'ar' ? 'أحمد السعيد' : 'Ahmed Al-Saeed',
+      role: locale === 'ar' ? 'مالك فيلا' : 'Villa Owner',
       quote: locale === 'ar'
-        ? 'تجربة رائعة مع فريق ATEX. المنزل الذكي يعمل بشكل مثالي وتفوقت توقعاتي.'
-        : 'Excellent experience with the ATEX team. The smart home works perfectly and exceeded my expectations.',
+        ? 'تجربة رائعة مع فريق ATEX. الأنظمة الذكية تعمل بشكل مثالي وتفوقت توقعاتي.'
+        : 'Excellent experience with the ATEX team. The smart systems work perfectly and exceeded my expectations.',
       rating: 5,
     },
     {
-      name: 'محمد العتيبي',
-      role: 'مدير شركة',
+      name: locale === 'ar' ? 'محمد العتيبي' : 'Mohammed Al-Otaibi',
+      role: locale === 'ar' ? 'مدير شركة' : 'Company Manager',
       quote: locale === 'ar'
         ? 'نظام إدارة المباني الذكي حسن الكفاءة بشكل كبير وأدركنا توفير كبير في التكاليف.'
         : 'The smart building management system significantly improved efficiency and we achieved significant cost savings.',
       rating: 5,
     },
     {
-      name: 'خالد الغامدي',
-      role: 'مدير فندق',
+      name: locale === 'ar' ? 'خالد الغامدي' : 'Khalid Al-Ghamdi',
+      role: locale === 'ar' ? 'مدير فندق' : 'Hotel Manager',
       quote: locale === 'ar'
-        ? 'أنظمة الفندق الذكية عززت تجربة ضيوفنا وحسنت العمليات بشكل كبير.'
-        : 'Smart hotel systems enhanced our guest experience and significantly improved operations.',
+        ? 'الأنظمة التقنية عززت عملياتنا وحسنت تجربة العملاء بشكل كبير.'
+        : 'The technical systems enhanced our operations and significantly improved customer experience.',
       rating: 5,
     },
+  ]
+
+  const clientLogos = [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/2560px-IBM_logo.svg.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Facebook.svg/2560px-Facebook.svg.png',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png',
   ]
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-background-tertiary">
-        <div className="container">
-          <div className="grid gap-12 py-20 md:grid-cols-2 lg:py-32">
-            <div className="flex flex-col justify-center space-y-6">
-              <h1 className="text-h1 font-semibold text-text-primary leading-tight">
+      <section className="relative h-screen min-h-[600px] overflow-hidden">
+        {/* Video Background - Hero section only */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/bg.mp4" type="video/mp4" />
+        </video>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        {/* Content */}
+        <div className="relative z-20 h-full flex items-center">
+          <div className="container">
+            <div className="max-w-3xl">
+              <h1 className="text-h1 font-semibold text-white leading-tight mb-6">
                 {t('hero.title')}
               </h1>
-              <p className="text-lg text-text-secondary">
+              <p className="text-xl text-white/90 mb-8">
                 {t('hero.subtitle')}
               </p>
               <div className="flex flex-wrap gap-4">
@@ -118,46 +94,32 @@ export default function HomePage() {
                   className="btn-primary btn h-14 px-8"
                 >
                   {t('hero.ctaPrimary')}
-                  <ArrowRight className="ms-2 h-5 w-5" />
+                  <ArrowRight className={`${locale === 'ar' ? 'me-2' : 'ms-2'} h-5 w-5`} />
                 </Link>
-                <a
-                  href={createWhatsAppLink(contact.whatsapp)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary btn h-14 px-8"
-                >
-                  <Play className="me-2 h-5 w-5" />
-                  {t('hero.ctaSecondary')}
-                </a>
               </div>
             </div>
-            <div className="relative flex items-center justify-center">
-              <div className="relative aspect-square w-full max-w-lg overflow-hidden rounded-2xl shadow-2xl">
+          </div>
+        </div>
+      </section>
+
+      {/* Logo Marquee */}
+      <section className="py-8 bg-background-secondary">
+        <div className="container">
+          <p className="text-center text-body-small text-text-muted mb-6">
+            {t('clients.title')}
+          </p>
+          <div className="flex overflow-hidden">
+            <div className="flex animate-marquee gap-12 items-center">
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
                 <Image
-                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop"
-                  alt={t('hero.title')}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                  priority
+                  key={index}
+                  src={logo}
+                  alt={`Client ${index + 1}`}
+                  width={120}
+                  height={40}
+                  className="h-8 w-auto object-contain opacity-60 grayscale hover:grayscale-0 transition-all"
                 />
-              </div>
-              {/* Floating Elements */}
-              <div className="absolute -left-4 -bottom-4 rounded-2xl bg-white p-6 shadow-xl">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                    <Zap className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-text-primary">
-                      {locale === 'ar' ? 'توفير الطاقة' : 'Energy Savings'}
-                    </p>
-                    <p className="text-sm text-text-muted">
-                      {locale === 'ar' ? 'حتى 30%' : 'Up to 30%'}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -188,7 +150,7 @@ export default function HomePage() {
                 </p>
                 <div className="flex items-center text-primary font-medium">
                   {t('common.learnMore')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className={`${locale === 'ar' ? 'mr-2' : 'ml-2'} h-4 w-4`} />
                 </div>
               </Link>
             ))}
@@ -196,57 +158,35 @@ export default function HomePage() {
           <div className="mt-12 text-center">
             <Link href={`/${locale}/services`} className="btn-text">
               {t('services.viewAll')}
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className={`${locale === 'ar' ? 'mr-2' : 'ml-2'} h-4 w-4`} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Projects Preview */}
+      {/* Sectors */}
       <section className="section bg-background-secondary">
         <div className="container">
           <div className="mb-12 text-center">
-            <h2 className="text-h2 mb-4 text-text-primary">{t('projects.title')}</h2>
+            <h2 className="text-h2 mb-4 text-text-primary">{t('sectors.title')}</h2>
             <p className="text-body text-text-secondary max-w-2xl mx-auto">
-              {t('projects.subtitle')}
+              {t('sectors.subtitle')}
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.slice(0, 3).map((project) => (
-              <Link
-                key={project.id}
-                href={`/${locale}/projects/${project.slug}`}
-                className="card overflow-hidden group"
-              >
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={project.gallery[0]}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="mb-2 text-h4 text-text-primary">{project.title}</h3>
-                  <p className="text-body-small text-text-muted mb-4">
-                    {project.client}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-small text-text-muted">{project.date}</span>
-                    <span className="text-primary font-medium">
-                      {t('projects.viewProject')}
-                    </span>
-                  </div>
-                </div>
-              </Link>
+            {[
+              { icon: '🏠', title: t('sectors.residential') },
+              { icon: '🏢', title: t('sectors.compounds') },
+              { icon: '🏛️', title: t('sectors.commercial') },
+              { icon: '🛒', title: t('sectors.retail') },
+              { icon: '🏥', title: t('sectors.healthcare') },
+              { icon: '🔧', title: t('sectors.maintenance') },
+            ].map((sector, index) => (
+              <div key={index} className="card p-6 flex items-center gap-4">
+                <span className="text-4xl">{sector.icon}</span>
+                <span className="font-medium text-text-primary">{sector.title}</span>
+              </div>
             ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Link href={`/${locale}/projects`} className="btn-text">
-              {t('projects.viewAll')}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
           </div>
         </div>
       </section>
@@ -289,7 +229,7 @@ export default function HomePage() {
               {processSteps.map((step, index) => (
                 <div key={index} className="relative text-center md:text-start">
                   <div className="relative mb-6 flex justify-center md:justify-start">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white font-bold text-lg">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white font-bold text-lg z-10">
                       {step.step}
                     </div>
                     <div className="absolute left-1/2 top-1/2 h-full w-0.5 bg-primary/30 -translate-x-1/2 hidden md:block" />
@@ -303,8 +243,57 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Projects Preview */}
       <section className="section bg-background">
+        <div className="container">
+          <div className="mb-12 text-center">
+            <h2 className="text-h2 mb-4 text-text-primary">{t('projects.title')}</h2>
+            <p className="text-body text-text-secondary max-w-2xl mx-auto">
+              {t('projects.subtitle')}
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects.slice(0, 3).map((project) => (
+              <Link
+                key={project.id}
+                href={`/${locale}/projects/${project.slug}`}
+                className="card overflow-hidden group"
+              >
+                <div className="relative aspect-video overflow-hidden">
+                  <Image
+                    src={project.gallery[0]}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="mb-2 text-h4 text-text-primary">{project.title}</h3>
+                  <p className="text-body-small text-text-muted mb-4">
+                    {project.client}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-small text-text-muted">{project.date}</span>
+                    <span className="text-primary font-medium">
+                      {t('projects.viewProject')}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link href={`/${locale}/projects`} className="btn-text">
+              {t('projects.viewAll')}
+              <ArrowRight className={`${locale === 'ar' ? 'mr-2' : 'ml-2'} h-4 w-4`} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="section bg-background-secondary">
         <div className="container">
           <div className="mb-12 text-center">
             <h2 className="text-h2 mb-4 text-text-primary">{t('testimonials.title')}</h2>
@@ -339,242 +328,20 @@ export default function HomePage() {
           <div className="grid gap-8 md:grid-cols-4">
             <div className="text-center">
               <p className="text-4xl md:text-5xl font-bold text-white mb-2">500+</p>
-              <p className="text-primary-100">
-                {locale === 'ar' ? 'مشروع منجز' : 'Projects Completed'}
-              </p>
+              <p className="text-primary-100">{locale === 'ar' ? 'مشروع منجز' : 'Projects Completed'}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl md:text-5xl font-bold text-white mb-2">300+</p>
-              <p className="text-primary-100">
-                {locale === 'ar' ? 'عميل سعيد' : 'Happy Clients'}
-              </p>
+              <p className="text-primary-100">{locale === 'ar' ? 'عميل سعيد' : 'Happy Clients'}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl md:text-5xl font-bold text-white mb-2">10+</p>
-              <p className="text-primary-100">
-                {locale === 'ar' ? 'سنوات خبرة' : 'Years Experience'}
-              </p>
+              <p className="text-primary-100">{locale === 'ar' ? 'سنوات خبرة' : 'Years Experience'}</p>
             </div>
             <div className="text-center">
               <p className="text-4xl md:text-5xl font-bold text-white mb-2">50+</p>
-              <p className="text-primary-100">
-                {locale === 'ar' ? 'فريق متخصص' : 'Team Members'}
-              </p>
+              <p className="text-primary-100">{locale === 'ar' ? 'فريق متخصص' : 'Team Members'}</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section className="section bg-background-secondary">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <h2 className="text-h2 mb-4 text-text-primary">
-              {locale === 'ar' ? 'القطاعات التي نخدمها' : 'Industries We Serve'}
-            </h2>
-            <p className="text-body text-text-secondary max-w-2xl mx-auto">
-              {locale === 'ar' 
-                ? 'نقدم حلولاً ذكية متكاملة لمختلف القطاعات والمنشآت'
-                : 'We provide comprehensive smart solutions for various sectors and facilities'}
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <div className="card group cursor-pointer">
-              <div className="relative aspect-square overflow-hidden rounded-xl mb-4">
-                <Image
-                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&auto=format&fit=crop"
-                  alt={locale === 'ar' ? 'الفلل والقصور' : 'Villas & Palaces'}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-h5 text-text-primary text-center">
-                {locale === 'ar' ? 'الفلل والقصور' : 'Villas & Palaces'}
-              </h3>
-            </div>
-            <div className="card group cursor-pointer">
-              <div className="relative aspect-square overflow-hidden rounded-xl mb-4">
-                <Image
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&auto=format&fit=crop"
-                  alt={locale === 'ar' ? 'المباني التجارية' : 'Commercial Buildings'}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-h5 text-text-primary text-center">
-                {locale === 'ar' ? 'المباني التجارية' : 'Commercial Buildings'}
-              </h3>
-            </div>
-            <div className="card group cursor-pointer">
-              <div className="relative aspect-square overflow-hidden rounded-xl mb-4">
-                <Image
-                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&auto=format&fit=crop"
-                  alt={locale === 'ar' ? 'ال الفنادق والمنتجعات' : 'Hotels & Resorts'}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-h5 text-text-primary text-center">
-                {locale === 'ar' ? 'ال فنادق والمنتجعات' : 'Hotels & Resorts'}
-              </h3>
-            </div>
-            <div className="card group cursor-pointer">
-              <div className="relative aspect-square overflow-hidden rounded-xl mb-4">
-                <Image
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&auto=format&fit=crop"
-                  alt={locale === 'ar' ? 'المستشفيات والعيادات' : 'Hospitals & Clinics'}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-h5 text-text-primary text-center">
-                {locale === 'ar' ? 'المستشفيات والعيادات' : 'Hospitals & Clinics'}
-              </h3>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Smart Section */}
-      <section className="section bg-background">
-        <div className="container">
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <div className="relative">
-              <div className="relative aspect-video overflow-hidden rounded-2xl">
-                <Image
-                  src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop"
-                  alt={locale === 'ar' ? 'منزل ذكي' : 'Smart Home'}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 rounded-xl bg-white p-6 shadow-xl">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                    <Target className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-text-primary">
-                      {locale === 'ar' ? 'تحكم كامل' : 'Full Control'}
-                    </p>
-                    <p className="text-sm text-text-muted">
-                      {locale === 'ar' ? 'من أي مكان وفي أي وقت' : 'From anywhere, anytime'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h2 className="text-h2 mb-6 text-text-primary">
-                {locale === 'ar' ? 'لماذا تختار المنزل الذكي؟' : 'Why Choose Smart Home?'}
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <TrendingUp className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="mb-1 font-medium text-text-primary">
-                      {locale === 'ar' ? 'توفير الطاقة' : 'Energy Savings'}
-                    </h3>
-                    <p className="text-body-small text-text-muted">
-                      {locale === 'ar' 
-                        ? 'حسّن كفاءة استهلاك الطاقة وحقق وفورات تصل إلى 30%'
-                        : 'Improve energy efficiency and save up to 30%'}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Shield className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="mb-1 font-medium text-text-primary">
-                      {locale === 'ar' ? 'الأمان والحماية' : 'Security & Safety'}
-                    </h3>
-                    <p className="text-body-small text-text-muted">
-                      {locale === 'ar' 
-                        ? 'أنظمة أمان متكاملة لحماية عائلتك وممتلكاتك'
-                        : 'Integrated security systems to protect your family and property'}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Clock className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="mb-1 font-medium text-text-primary">
-                      {locale === 'ar' ? 'الراحة والرفاهية' : 'Comfort & Convenience'}
-                    </h3>
-                    <p className="text-body-small text-text-muted">
-                      {locale === 'ar' 
-                        ? 'تحكم في كل شيء بسهولة من خلال هاتفك الذكي'
-                        : 'Control everything easily through your smartphone'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8">
-                <Link
-                  href={`/${locale}/services`}
-                  className="btn-primary btn"
-                >
-                  {locale === 'ar' ? 'اكتشف المزيد' : 'Discover More'}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Preview */}
-      <section className="section bg-background-secondary">
-        <div className="container">
-          <div className="mb-12 text-center">
-            <h2 className="text-h2 mb-4 text-text-primary">{t('blog.title')}</h2>
-            <p className="text-body text-text-secondary max-w-2xl mx-auto">
-              {t('blog.subtitle')}
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {blogPosts.slice(0, 3).map((post) => (
-              <Link
-                key={post.id}
-                href={`/${locale}/blog/${post.slug}`}
-                className="card overflow-hidden group"
-              >
-                {post.image && (
-                  <div className="relative aspect-video overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div className="p-6">
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className="badge badge-secondary">{post.category}</span>
-                    <span className="text-small text-text-muted">{post.date}</span>
-                  </div>
-                  <h3 className="mb-2 text-h5 text-text-primary line-clamp-2 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-body-small text-text-muted line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Link href={`/${locale}/blog`} className="btn-text">
-              {t('blog.viewAll')}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
           </div>
         </div>
       </section>
@@ -585,8 +352,8 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-h2 mb-6 text-white">
               {locale === 'ar'
-                ? 'جاهز لتحويل منزلك إلى منزل ذكي؟'
-                : 'Ready to Transform Your Home into a Smart Home?'}
+                ? 'جاهز لتحويل مشروعك إلى تقنية ذكية؟'
+                : 'Ready to Transform Your Project with Smart Technology?'}
             </h2>
             <p className="text-lg text-primary-100 mb-8">
               {locale === 'ar'
@@ -599,7 +366,7 @@ export default function HomePage() {
                 className="btn h-14 bg-white text-primary hover:bg-background hover:text-primary"
               >
                 {t('hero.ctaPrimary')}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className={`${locale === 'ar' ? 'mr-2' : 'ml-2'} h-5 w-5`} />
               </Link>
               <a
                 href={createWhatsAppLink(contact.whatsapp)}
@@ -607,7 +374,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="btn h-14 bg-primary-light border-2 border-white text-white hover:bg-primary-lighter"
               >
-                <Play className="mr-2 h-5 w-5" />
+                <Play className={`${locale === 'ar' ? 'ml-2' : 'mr-2'} h-5 w-5`} />
                 {t('hero.ctaSecondary')}
               </a>
             </div>
@@ -615,5 +382,33 @@ export default function HomePage() {
         </div>
       </section>
     </>
+  )
+}
+
+function formatPhoneNumber(phone: string) {
+  return phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3')
+}
+
+function MessageCircle({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  )
+}
+
+function Mail({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  )
+}
+
+function Phone({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+    </svg>
   )
 }
